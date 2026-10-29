@@ -44,7 +44,8 @@ export const work = [
     period: '2025 — Present',
     role: 'Software Engineer',
     org: 'Freelancer',
-    note: 'Building and shipping high-quality software for clients across the globe.',
+    note: 'Building and shipping high-quality software for clients across the globe. Engineering scalable backend systems, robust APIs, and cloud-native services.',
+    skills: ['Go', 'TypeScript', 'Node.js', 'PostgreSQL', 'Docker', 'AWS'],
   }
 ]
 

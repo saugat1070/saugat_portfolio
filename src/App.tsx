@@ -24,8 +24,9 @@ export default function App() {
         <ProjectsSection />
         <TeachingSection />
         <ContactSection />
-        <Footer />
       </main>
+
+      <Footer />
     </div>
   );
 }
