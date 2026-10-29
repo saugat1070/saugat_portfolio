@@ -4,7 +4,7 @@ import { Arrow } from "./Arrow";
 const sections = [
   ["01", "About", "#about"],
   ["02", "Work", "#work"],
-  ["03", "Engineering Projects", "#projects"],
+  ["03", "Projects", "#projects"],
   ["04", "Contact", "#contact"],
 ];
 

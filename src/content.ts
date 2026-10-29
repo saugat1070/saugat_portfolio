@@ -74,7 +74,7 @@ export const work = [
     role: 'Software Engineer',
     org: 'Freelancer',
     note: 'Building and shipping software solutions for clients, focusing on backend architecture, API development, and scalable servicesBuilding and delivering software solutions for clients worldwide, specializing in backend development, scalable APIs, database architecture, and reliable cloud deployments.',
-    skills: ['Backend Development', 'API Development', 'Database Architecture', 'Cloud Deployments', 'Scalable Services'],
+    skills: ['Backend Development', 'API Development', 'Database Architecture', 'Cloud Deployments'],
   }
 ]
 
@@ -129,6 +129,18 @@ export const teaching = {
     { src: "https://cdn.saugatgiri.com.np/portfolio/Mentor/mentor_104.jpg", alt: 'Three people gathered around a laptop' },
     { src: "https://cdn.saugatgiri.com.np/portfolio/Mentor/mentor_105.jpg", alt: 'Two people pairing in front of a laptop' },
     { src: "https://cdn.saugatgiri.com.np/portfolio/Mentor/mentor_106.jpg", alt: 'A group standing in front of a whiteboard' },
+    {
+      src: "https://cdn.saugatgiri.com.np/portfolio/Mentor/mentor_107.jpg",
+      alt: "Mentor speaking with two colleagues at a conference table"
+    },
+    {
+      src: "https://cdn.saugatgiri.com.np/portfolio/Mentor/mentor_108.jpg",
+      alt: "Saugat",
+    },
+    {
+      src: "https://cdn.saugatgiri.com.np/portfolio/Mentor/mentor_109.jpg",
+      alt: "Saugat",
+    }
   ],
 }
 
