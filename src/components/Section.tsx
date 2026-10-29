@@ -1,5 +1,6 @@
-import type { ReactNode } from 'react'
-import { Reveal } from './Reveal'
+import type { ReactNode } from "react";
+import { motion } from "framer-motion";
+import { Reveal } from "./Reveal";
 
 export function Section({
   id,
@@ -7,15 +8,22 @@ export function Section({
   label,
   children,
 }: {
-  id: string
-  index: string
-  label: string
-  children: ReactNode
+  id: string;
+  index: string;
+  label: string;
+  children: ReactNode;
 }) {
   return (
-    <section id={id} className="border-t border-line py-16 md:py-20 lg:py-24">
+    <motion.section
+      id={id}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-4% 0px" }}
+      transition={{ duration: 0.5 }}
+      className="border-t border-line py-16 md:py-20 lg:py-24"
+    >
       <div className="grid gap-8 md:gap-10 lg:grid-cols-[240px_1fr] lg:gap-12">
-        <Reveal>
+        <Reveal y={16}>
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-2">
             <span className="text-muted">{index}</span>
             <span className="mx-2 text-muted">/</span>
@@ -24,6 +32,6 @@ export function Section({
         </Reveal>
         <div>{children}</div>
       </div>
-    </section>
-  )
+    </motion.section>
+  );
 }

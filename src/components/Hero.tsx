@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Reveal } from "./Reveal";
 import { verse, statement } from "../content";
 
@@ -42,18 +43,26 @@ export function Hero() {
           </Reveal>
         </div>
 
-        {/* Cutout portrait fills the full hero height and rests on the divider below */}
+        {/* Cutout portrait fills the full hero height with smooth entrance and micro-interaction */}
         <Reveal
           delay={150}
           className="relative order-1 md:order-2 md:min-h-[460px]"
         >
-          <img
+          <motion.img
             src="/saugat-hero.webp"
             alt="Portrait of Saugat Giri"
             width={1305}
             height={1600}
             fetchPriority="high"
-            className="mx-auto block h-auto w-full max-w-[320px] select-none [mask-image:linear-gradient(to_bottom,black_78%,transparent)] sm:max-w-[380px] md:absolute md:inset-y-0 md:left-0 md:h-full md:max-w-[500px] md:object-contain md:object-bottom md:[mask-image:none]"
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 0.9,
+              delay: 0.15,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            whileHover={{ scale: 1.015 }}
+            className="mx-auto block h-auto w-full max-w-[320px] select-none [mask-image:linear-gradient(to_bottom,black_78%,transparent)] sm:max-w-[380px] md:absolute md:inset-y-0 md:left-0 md:h-full md:max-w-[500px] md:object-contain md:object-bottom md:[mask-image:none] transition-transform duration-500"
           />
         </Reveal>
       </section>

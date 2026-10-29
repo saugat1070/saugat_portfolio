@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Arrow } from "./Arrow";
 import { Reveal } from "./Reveal";
 import { Section } from "./Section";
@@ -12,15 +13,21 @@ export function ContactSection() {
         </p>
       </Reveal>
       <Reveal delay={100}>
-        <a
+        <motion.a
           href={`mailto:${contact.email}`}
+          whileHover={{ x: 4 }}
+          transition={{ type: "spring", stiffness: 400, damping: 25 }}
           className="mt-8 inline-block border-b border-muted pb-1 text-[17px] text-ink transition-colors duration-300 hover:border-ink"
         >
           {contact.email}
-        </a>
+        </motion.a>
         <ul className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
           {contact.links.map((l) => (
-            <li key={l.label}>
+            <motion.li
+              key={l.label}
+              whileHover={{ y: -2 }}
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            >
               <a
                 href={l.href}
                 target={
@@ -29,12 +36,14 @@ export function ContactSection() {
                     : undefined
                 }
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-2 transition-colors duration-300 hover:text-ink"
+                className="group inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-2 transition-colors duration-300 hover:text-ink"
               >
                 {l.label}
-                <Arrow />
+                <span className="inline-block transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                  <Arrow />
+                </span>
               </a>
-            </li>
+            </motion.li>
           ))}
         </ul>
       </Reveal>

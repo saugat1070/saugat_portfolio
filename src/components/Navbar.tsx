@@ -35,15 +35,6 @@ const items: { label: string; id: string; icon: ReactNode }[] = [
     ),
   },
   {
-    label: 'Teaching',
-    id: 'teaching',
-    icon: (
-      <g {...stroke}>
-        <path d="M10 5.25C8.5 4 6.25 3.5 3.25 3.75v11.5c3-.25 5.25.25 6.75 1.5 1.5-1.25 3.75-1.75 6.75-1.5V3.75C13.75 3.5 11.5 4 10 5.25Zm0 0v11.5" />
-      </g>
-    ),
-  },
-  {
     label: 'Contact',
     id: 'contact',
     icon: (

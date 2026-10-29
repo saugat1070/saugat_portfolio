@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useTheme } from "./ThemeToggle";
 import { techStack } from "../content";
 
@@ -16,7 +17,13 @@ export function TechStack() {
       </div>
 
       {/* Centered skillicons display with responsive layout and theme sync */}
-      <div className="flex flex-col items-center justify-center p-4 sm:p-6 bg-surface/30 overflow-x-auto">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.98 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className="flex flex-col items-center justify-center p-4 sm:p-6 bg-surface/30 overflow-x-auto"
+      >
         <img
           alt="Node/Express/TS"
           src={`${techStack.rawUrl}&perline=15&theme=${theme}`}
@@ -29,9 +36,9 @@ export function TechStack() {
           className="max-w-full h-auto block sm:hidden"
           loading="lazy"
         />
-      </div>
+      </motion.div>
 
-      {/* Categorized tech stack list */}
+      {/* Categorized tech stack list with interactive hover badges */}
       <div className="grid grid-cols-1 border-t border-line divide-y divide-line sm:grid-cols-2 sm:divide-y-0 sm:divide-x lg:grid-cols-4">
         {techStack.categories.map((category) => (
           <div key={category.title} className="p-4 sm:p-5">
@@ -40,12 +47,15 @@ export function TechStack() {
             </p>
             <div className="flex flex-wrap gap-1.5">
               {category.items.map((skill) => (
-                <span
+                <motion.span
                   key={skill}
-                  className="inline-flex items-center rounded border border-line bg-surface px-2 py-0.5 font-mono text-[11px] text-ink transition-colors duration-200 hover:border-ink hover:text-ink"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  className="inline-flex cursor-default items-center rounded border border-line bg-surface px-2 py-0.5 font-mono text-[11px] text-ink transition-colors duration-200 hover:border-ink hover:text-ink select-none"
                 >
                   {skill}
-                </span>
+                </motion.span>
               ))}
             </div>
           </div>

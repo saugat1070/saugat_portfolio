@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Reveal } from "./Reveal";
 import { Section } from "./Section";
 import {
@@ -34,9 +35,14 @@ export function WorkSection() {
                     <span>{w.role}</span>
                     <span className="font-normal text-ink-2">· {w.org}</span>
                     {isPresent && (
-                      <span className="inline-flex items-center rounded-full border border-emerald-500/25 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                      <motion.span
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.3 }}
+                        className="inline-flex items-center rounded-full border border-emerald-500/25 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-emerald-600 dark:text-emerald-400"
+                      >
                         Current
-                      </span>
+                      </motion.span>
                     )}
                   </TimelineTitle>
                 </TimelineHeader>
@@ -53,12 +59,19 @@ export function WorkSection() {
                   {skills.length > 0 && (
                     <div className="mt-3 flex flex-wrap gap-1.5">
                       {skills.map((skill) => (
-                        <span
+                        <motion.span
                           key={skill}
-                          className="inline-flex items-center rounded border border-line bg-surface/80 px-2 py-0.5 font-mono text-[11px] text-ink transition-colors hover:border-ink hover:text-ink"
+                          whileHover={{ scale: 1.05, y: -2 }}
+                          whileTap={{ scale: 0.95 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 25,
+                          }}
+                          className="inline-flex cursor-default items-center rounded border border-line bg-surface/80 px-2 py-0.5 font-mono text-[11px] text-ink transition-colors hover:border-ink hover:text-ink select-none"
                         >
                           {skill}
-                        </span>
+                        </motion.span>
                       ))}
                     </div>
                   )}
