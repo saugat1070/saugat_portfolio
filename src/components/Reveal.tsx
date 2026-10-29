@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import type { ReactNode } from "react";
+import { motion } from "framer-motion"
+import type { ReactNode } from "react"
 
 export function Reveal({
   children,
@@ -7,10 +7,10 @@ export function Reveal({
   className = "",
   y = 20,
 }: {
-  children: ReactNode;
-  delay?: number;
-  className?: string;
-  y?: number;
+  children: ReactNode
+  delay?: number
+  className?: string
+  y?: number
 }) {
   return (
     <motion.div
@@ -26,5 +26,5 @@ export function Reveal({
     >
       {children}
     </motion.div>
-  );
+  )
 }

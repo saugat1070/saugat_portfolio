@@ -1,6 +1,6 @@
-import type { ReactNode } from "react";
-import { motion } from "framer-motion";
-import { Reveal } from "./Reveal";
+import type { ReactNode } from "react"
+import { motion } from "framer-motion"
+import { Reveal } from "./Reveal"
 
 export function Section({
   id,
@@ -8,10 +8,10 @@ export function Section({
   label,
   children,
 }: {
-  id: string;
-  index: string;
-  label: string;
-  children: ReactNode;
+  id: string
+  index: string
+  label: string
+  children: ReactNode
 }) {
   return (
     <motion.section
@@ -24,14 +24,14 @@ export function Section({
     >
       <div className="grid gap-8 md:gap-10 lg:grid-cols-[240px_1fr] lg:gap-12">
         <Reveal y={16}>
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-2">
+          <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-2">
             <span className="text-muted">{index}</span>
             <span className="mx-2 text-muted">/</span>
             {label}
-          </p>
+          </h2>
         </Reveal>
         <div>{children}</div>
       </div>
     </motion.section>
-  );
+  )
 }

@@ -1,12 +1,12 @@
-import { motion } from "framer-motion";
-import { Arrow } from "./Arrow";
+import { motion } from "framer-motion"
+import { Arrow } from "./Arrow"
 
 const sections = [
   ["01", "About", "#about"],
   ["02", "Work", "#work"],
   ["03", "Projects", "#projects"],
   ["04", "Contact", "#contact"],
-];
+]
 
 export function SectionIndex() {
   return (
@@ -55,5 +55,5 @@ export function SectionIndex() {
         ))}
       </motion.ul>
     </nav>
-  );
+  )
 }

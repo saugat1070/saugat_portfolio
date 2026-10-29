@@ -1,25 +1,25 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react"
 
-type Day = { date: string; count: number; level: 0 | 1 | 2 | 3 | 4 };
+type Day = { date: string count: number level: 0 | 1 | 2 | 3 | 4 }
 type Repo = {
-  stargazers_count: number;
-  language: string | null;
-  fork: boolean;
-};
+  stargazers_count: number
+  language: string | null
+  fork: boolean
+}
 type Data = {
-  repos: number;
-  followers: number;
-  stars: number;
-  total: number;
-  days: Day[];
-  langCounts: Record<string, number>;
-};
+  repos: number
+  followers: number
+  stars: number
+  total: number
+  days: Day[]
+  langCounts: Record<string, number>
+}
 
-const CELL = 10;
-const GAP = 3;
-const STEP = CELL + GAP;
+const CELL = 10
+const GAP = 3
+const STEP = CELL + GAP
 // Smallest on-screen spacing per week column before the chart drops older weeks.
-const MIN_STEP = 12;
+const MIN_STEP = 12
 const MONTHS = [
   "Jan",
   "Feb",
@@ -33,7 +33,7 @@ const MONTHS = [
   "Oct",
   "Nov",
   "Dec",
-];
+]
 
 // Monochrome scale derived from theme tokens, so it follows light/dark mode.
 const LEVEL_FILL = [
@@ -42,36 +42,36 @@ const LEVEL_FILL = [
   "color-mix(in oklab, var(--ink) 50%, var(--bg))",
   "color-mix(in oklab, var(--ink) 74%, var(--bg))",
   "var(--ink)",
-];
+]
 
 async function load(username: string): Promise<Data> {
-  const key = `gh:v3:${username}`;
-  const cached = sessionStorage.getItem(key);
-  if (cached) return JSON.parse(cached);
+  const key = `gh:v3:${username}`
+  const cached = sessionStorage.getItem(key)
+  if (cached) return JSON.parse(cached)
 
   const [user, repos, contrib] = await Promise.all([
     fetch(`https://api.github.com/users/${username}`).then((r) => {
-      if (!r.ok) throw new Error("user");
-      return r.json();
+      if (!r.ok) throw new Error("user")
+      return r.json()
     }),
     fetch(
       `https://api.github.com/users/${username}/repos?per_page=100&type=owner`,
-    ).then((r) => (r.ok ? (r.json() as Promise<Repo[]>) : [])),
+    ).then((r) => (r.ok ? r.json() as Promise<Repo[]> : [])),
     fetch(
       `https://github-contributions-api.jogruber.de/v4/${username}?y=last`,
     ).then((r) => {
-      if (!r.ok) throw new Error("contributions");
+      if (!r.ok) throw new Error("contributions")
       return r.json() as Promise<{
-        total: { lastYear: number };
-        contributions: Day[];
-      }>;
+        total: { lastYear: number }
+        contributions: Day[]
+      }>
     }),
-  ]);
+  ])
 
-  const own = repos.filter((r) => !r.fork);
-  const langCounts: Record<string, number> = {};
+  const own = repos.filter((r) => !r.fork)
+  const langCounts: Record<string, number> = {}
   for (const r of own)
-    if (r.language) langCounts[r.language] = (langCounts[r.language] ?? 0) + 1;
+    if (r.language) langCounts[r.language] = (langCounts[r.language] ?? 0) + 1
 
   const data: Data = {
     repos: user.public_repos ?? own.length,
@@ -80,9 +80,9 @@ async function load(username: string): Promise<Data> {
     total: contrib.total.lastYear,
     days: contrib.contributions,
     langCounts,
-  };
-  sessionStorage.setItem(key, JSON.stringify(data));
-  return data;
+  }
+  sessionStorage.setItem(key, JSON.stringify(data))
+  return data
 }
 
 // Hidden languages are dropped; merged ones (case-insensitive) fold into their target, e.g. HTML → Go.
@@ -92,34 +92,34 @@ function topLanguages(
   merge: Record<string, string>,
   hide: string[],
 ) {
-  const hidden = new Set(hide.map((h) => h.toLowerCase()));
+  const hidden = new Set(hide.map((h) => h.toLowerCase()))
   const rules = new Map(
     Object.entries(merge).map(([from, to]) => [from.toLowerCase(), to]),
-  );
-  const merged = new Map<string, number>();
+  )
+  const merged = new Map<string, number>()
   for (const [name, n] of Object.entries(counts)) {
-    if (hidden.has(name.toLowerCase())) continue;
-    const target = rules.get(name.toLowerCase()) ?? name;
-    merged.set(target, (merged.get(target) ?? 0) + n);
+    if (hidden.has(name.toLowerCase())) continue
+    const target = rules.get(name.toLowerCase()) ?? name
+    merged.set(target, (merged.get(target) ?? 0) + n)
   }
-  const total = [...merged.values()].reduce((a, b) => a + b, 0) || 1;
+  const total = [...merged.values()].reduce((a, b) => a + b, 0) || 1
   const languages = [...merged.entries()]
     .sort((a, b) => b[1] - a[1])
     .slice(0, 4)
-    .map(([name, n]) => ({ name, share: n / total }));
-  const rest = 1 - languages.reduce((s, l) => s + l.share, 0);
-  if (rest > 0.005) languages.push({ name: "Other", share: rest });
-  return languages;
+    .map(([name, n]) => ({ name, share: n / total }))
+  const rest = 1 - languages.reduce((s, l) => s + l.share, 0)
+  if (rest > 0.005) languages.push({ name: "Other", share: rest })
+  return languages
 }
 
 function longestStreak(days: Day[]) {
-  let best = 0;
-  let run = 0;
+  let best = 0
+  let run = 0
   for (const d of days) {
-    run = d.count > 0 ? run + 1 : 0;
-    best = Math.max(best, run);
+    run = d.count > 0 ? run + 1 : 0
+    best = Math.max(best, run)
   }
-  return best;
+  return best
 }
 
 function formatDate(iso: string) {
@@ -128,91 +128,90 @@ function formatDate(iso: string) {
     day: "numeric",
     year: "numeric",
     timeZone: "UTC",
-  });
+  })
 }
 
-const meta = "font-mono text-[10px] uppercase tracking-[0.18em] text-ink-2";
+const meta = "font-mono text-[10px] uppercase tracking-[0.18em] text-ink-2"
 
 export function GitHubActivity({
   username,
   mergeLanguages = {},
   hideLanguages = [],
 }: {
-  username: string;
-  mergeLanguages?: Record<string, string>;
-  hideLanguages?: string[];
+  username: string
+  mergeLanguages?: Record<string, string>
+  hideLanguages?: string[]
 }) {
-  const [data, setData] = useState<Data | null>(null);
-  const [failed, setFailed] = useState(false);
-  const [hover, setHover] = useState<Day | null>(null);
-  const chartBox = useRef<HTMLDivElement>(null);
-  const [chartWidth, setChartWidth] = useState(0);
+  const [data, setData] = useState<Data | null>(null)
+  const [failed, setFailed] = useState(false)
+  const [hover, setHover] = useState<Day | null>(null)
+  const chartBox = useRef<HTMLDivElement>(null)
+  const [chartWidth, setChartWidth] = useState(0)
 
   // Track the chart's width so narrow screens show fewer, legible weeks instead of scrolling.
   useEffect(() => {
-    const el = chartBox.current;
-    if (!el) return;
+    const el = chartBox.current
+    if (!el) return
     const ro = new ResizeObserver(([entry]) =>
       setChartWidth(entry.contentRect.width),
-    );
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
+    )
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
 
   useEffect(() => {
-    let alive = true;
+    let alive = true
     load(username)
       .then((d) => alive && setData(d))
-      .catch(() => alive && setFailed(true));
+      .catch(() => alive && setFailed(true))
     return () => {
-      alive = false;
-    };
-  }, [username]);
+      alive = false
+    }
+  }, [username])
 
-  const configKey = JSON.stringify([mergeLanguages, hideLanguages]);
+  const configKey = JSON.stringify([mergeLanguages, hideLanguages])
   const languages = useMemo(() => {
-    if (!data?.langCounts) return [];
-    const [merge, hide] = JSON.parse(configKey) as [
-      Record<string, string>,
-      string[],
-    ];
-    return topLanguages(data.langCounts, merge, hide);
-  }, [data, configKey]);
+    if (!data?.langCounts) return []
+    const [merge, hide] = JSON.parse(
+      configKey,
+    ) as [Record<string, string>, string[]]
+    return topLanguages(data.langCounts, merge, hide)
+  }, [data, configKey])
 
   // Arrange days into Sunday-first week columns, keeping only the most recent weeks that fit.
   const grid = useMemo(() => {
-    if (!data) return null;
-    const offset = new Date(`${data.days[0].date}T00:00:00Z`).getUTCDay();
+    if (!data) return null
+    const offset = new Date(`${data.days[0].date}T00:00:00Z`).getUTCDay()
     const all = data.days.map((d, i) => ({
       ...d,
       col: Math.floor((i + offset) / 7),
       row: (i + offset) % 7,
-    }));
-    const totalCols = all[all.length - 1].col + 1;
+    }))
+    const totalCols = all[all.length - 1].col + 1
     const fit = chartWidth
       ? Math.floor((chartWidth + GAP) / MIN_STEP)
-      : totalCols;
-    const cols = Math.min(totalCols, Math.max(13, fit));
-    const start = totalCols - cols;
+      : totalCols
+    const cols = Math.min(totalCols, Math.max(13, fit))
+    const start = totalCols - cols
     const cells = all
       .filter((c) => c.col >= start)
-      .map((c) => ({ ...c, col: c.col - start }));
+      .map((c) => ({ ...c, col: c.col - start }))
 
-    const months: { label: string; col: number }[] = [];
-    let last = -1;
+    const months: { label: string col: number }[] = []
+    let last = -1
     for (const c of cells) {
-      const m = new Date(`${c.date}T00:00:00Z`).getUTCMonth();
+      const m = new Date(`${c.date}T00:00:00Z`).getUTCMonth()
       if (m !== last && c.row === 0) {
         if (!months.length || c.col - months[months.length - 1].col >= 3)
-          months.push({ label: MONTHS[m], col: c.col });
-        last = m;
+          months.push({ label: MONTHS[m], col: c.col })
+        last = m
       }
     }
-    const visibleTotal = cells.reduce((s, c) => s + c.count, 0);
-    return { cells, months, cols, partial: cols < totalCols, visibleTotal };
-  }, [data, chartWidth]);
+    const visibleTotal = cells.reduce((s, c) => s + c.count, 0)
+    return { cells, months, cols, partial: cols < totalCols, visibleTotal }
+  }, [data, chartWidth])
 
-  const profile = `https://github.com/${username}`;
+  const profile = `https://github.com/${username}`
 
   if (failed) {
     return (
@@ -231,7 +230,7 @@ export function GitHubActivity({
           .
         </p>
       </div>
-    );
+    )
   }
 
   const stats = data
@@ -241,13 +240,13 @@ export function GitHubActivity({
         ["Repositories", `${data.repos}`, "public"],
         ["Stars", `${data.stars}`, `${data.followers} followers`],
       ]
-    : null;
+    : null
 
   const skeletonCols = chartWidth
     ? Math.min(53, Math.max(13, Math.floor((chartWidth + GAP) / MIN_STEP)))
-    : 53;
-  const width = (grid?.cols ?? skeletonCols) * STEP - GAP;
-  const height = 7 * STEP - GAP + 18;
+    : 53
+  const width = (grid?.cols ?? skeletonCols) * STEP - GAP
+  const height = 7 * STEP - GAP + 18
 
   return (
     <div className="border border-line" aria-busy={!data}>
@@ -335,7 +334,9 @@ export function GitHubActivity({
                       onPointerDown={() => setHover(c)}
                       className="transition-[fill] duration-300"
                     >
-                      <title>{`${c.count} contribution${c.count === 1 ? "" : "s"} on ${formatDate(c.date)}`}</title>
+                      <title>{`${c.count} contribution${
+                        c.count === 1 ? "" : "s"
+                      } on ${formatDate(c.date)}`}</title>
                     </rect>
                   ))
                 : Array.from({ length: skeletonCols * 7 }, (_, i) => (
@@ -357,7 +358,9 @@ export function GitHubActivity({
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3 font-mono text-[10px] tracking-[0.06em] text-ink-2">
           <span className="min-h-[1em] tabular-nums">
             {hover
-              ? `${hover.count} contribution${hover.count === 1 ? "" : "s"} · ${formatDate(hover.date)}`
+              ? `${hover.count} contribution${
+                  hover.count === 1 ? "" : "s"
+                } · ${formatDate(hover.date)}`
               : data
                 ? "Hover or tap a day for details"
                 : "Loading…"}
@@ -402,23 +405,23 @@ export function GitHubActivity({
         </div>
       )}
     </div>
-  );
+  )
 }
 
 function langFill(name: string, i: number) {
-  return name === "Other" ? "var(--muted)" : LEVEL_FILL[4 - i];
+  return name === "Other" ? "var(--muted)" : LEVEL_FILL[4 - i]
 }
 
 function LanguageDonut({
   languages,
 }: {
-  languages: { name: string; share: number }[];
+  languages: { name: string share: number }[]
 }) {
-  const r = 42;
-  const c = 2 * Math.PI * r;
-  const gap = languages.length > 1 ? 2.5 : 0;
-  let offset = 0;
-  const top = languages[0];
+  const r = 42
+  const c = 2 * Math.PI * r
+  const gap = languages.length > 1 ? 2.5 : 0
+  let offset = 0
+  const top = languages[0]
 
   return (
     <svg
@@ -437,7 +440,7 @@ function LanguageDonut({
       />
       <g transform="rotate(-90 60 60)">
         {languages.map((l, i) => {
-          const len = Math.max(l.share * c - gap, 0.5);
+          const len = Math.max(l.share * c - gap, 0.5)
           const seg = (
             <circle
               key={l.name}
@@ -452,9 +455,9 @@ function LanguageDonut({
             >
               <title>{`${l.name} · ${Math.round(l.share * 100)}%`}</title>
             </circle>
-          );
-          offset += l.share * c;
-          return seg;
+          )
+          offset += l.share * c
+          return seg
         })}
       </g>
       <text
@@ -478,5 +481,5 @@ function LanguageDonut({
         {top.name.toUpperCase()}
       </text>
     </svg>
-  );
+  )
 }

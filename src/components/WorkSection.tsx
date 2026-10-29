@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
-import { Reveal } from "./Reveal";
-import { Section } from "./Section";
+import { motion } from "framer-motion"
+import { Reveal } from "./Reveal"
+import { Section } from "./Section"
 import {
   Timeline,
   TimelineContent,
@@ -10,25 +10,25 @@ import {
   TimelineItem,
   TimelineSeparator,
   TimelineTitle,
-} from "./reui/timeline";
-import { work, clients } from "../content";
+} from "./reui/timeline"
+import { work, clients } from "../content"
 
 export function WorkSection() {
   // Duplicate clients array into two identical halves to form a seamless infinite loop
-  const clientHalf = [...clients, ...clients, ...clients];
-  const marqueeClients = [...clientHalf, ...clientHalf];
+  const clientHalf = [...clients, ...clients, ...clients]
+  const marqueeClients = [...clientHalf, ...clientHalf]
 
   return (
     <Section id="work" index="02" label="Work">
       <Reveal>
         <Timeline defaultValue={1} className="w-full">
           {work.map((w, index) => {
-            const isPresent = w.period.toLowerCase().includes("present");
-            const isFreelancer = w.org.toLowerCase().includes("freelancer");
+            const isPresent = w.period.toLowerCase().includes("present")
+            const isFreelancer = w.org.toLowerCase().includes("freelancer")
             const skills =
               "skills" in w && Array.isArray(w.skills)
-                ? (w.skills as string[])
-                : [];
+                ? w.skills as string[]
+                : []
 
             return (
               <TimelineItem key={`${w.period}-${index}`} step={index + 1}>
@@ -128,10 +128,10 @@ export function WorkSection() {
                   )}
                 </TimelineContent>
               </TimelineItem>
-            );
+            )
           })}
         </Timeline>
       </Reveal>
     </Section>
-  );
+  )
 }

@@ -1,0 +1,17 @@
+{
+  "name": "Saugat Giri — Software Engineer",
+  "short_name": "Saugat Giri",
+  "description": "Portfolio of Saugat Giri, Software Engineer specializing in backend architecture, scalable systems, and cloud deployments.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#131210",
+  "theme_color": "#131210",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

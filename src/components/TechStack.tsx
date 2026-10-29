@@ -1,11 +1,11 @@
-import { motion } from "framer-motion";
-import { useTheme } from "./ThemeToggle";
-import { techStack } from "../content";
+import { motion } from "framer-motion"
+import { useTheme } from "./ThemeToggle"
+import { techStack } from "../content"
 
-const meta = "font-mono text-[11px] uppercase tracking-[0.18em] text-ink-2";
+const meta = "font-mono text-[11px] uppercase tracking-[0.18em] text-ink-2"
 
 export function TechStack() {
-  const { theme } = useTheme();
+  const { theme } = useTheme()
 
   return (
     <div className="border border-line">
@@ -62,5 +62,5 @@ export function TechStack() {
         ))}
       </div>
     </div>
-  );
+  )
 }

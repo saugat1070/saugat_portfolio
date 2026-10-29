@@ -1,8 +1,8 @@
-import { motion } from "framer-motion";
-import { Arrow } from "./Arrow";
-import { Reveal } from "./Reveal";
-import { Section } from "./Section";
-import { projects } from "../content";
+import { motion } from "framer-motion"
+import { Arrow } from "./Arrow"
+import { Reveal } from "./Reveal"
+import { Section } from "./Section"
+import { projects } from "../content"
 
 export function ProjectsSection() {
   return (
@@ -44,5 +44,5 @@ export function ProjectsSection() {
         ))}
       </ul>
     </Section>
-  );
+  )
 }

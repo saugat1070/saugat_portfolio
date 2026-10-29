@@ -1,21 +1,21 @@
-import { motion, useScroll, useSpring } from "framer-motion";
-import { Navbar } from "./components/Navbar";
-import { Hero } from "./components/Hero";
-import { SectionIndex } from "./components/SectionIndex";
-import { AboutSection } from "./components/AboutSection";
-import { WorkSection } from "./components/WorkSection";
-import { ProjectsSection } from "./components/ProjectsSection";
-import { TeachingSection } from "./components/TeachingSection";
-import { ContactSection } from "./components/ContactSection";
-import { Footer } from "./components/Footer";
+import { motion, useScroll, useSpring } from "framer-motion"
+import { Navbar } from "./components/Navbar"
+import { Hero } from "./components/Hero"
+import { SectionIndex } from "./components/SectionIndex"
+import { AboutSection } from "./components/AboutSection"
+import { WorkSection } from "./components/WorkSection"
+import { ProjectsSection } from "./components/ProjectsSection"
+import { TeachingSection } from "./components/TeachingSection"
+import { ContactSection } from "./components/ContactSection"
+import { Footer } from "./components/Footer"
 
 export default function App() {
-  const { scrollYProgress } = useScroll();
+  const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001,
-  });
+  })
 
   return (
     <div
@@ -42,5 +42,5 @@ export default function App() {
 
       <Footer />
     </div>
-  );
+  )
 }

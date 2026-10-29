@@ -1,8 +1,8 @@
-import { Reveal } from "./Reveal";
-import { Section } from "./Section";
-import { GitHubActivity } from "./GitHubActivity";
-import { TechStack } from "./TechStack";
-import { about, github } from "../content";
+import { Reveal } from "./Reveal"
+import { Section } from "./Section"
+import { GitHubActivity } from "./GitHubActivity"
+import { TechStack } from "./TechStack"
+import { about, github } from "../content"
 
 export function AboutSection() {
   return (
@@ -35,5 +35,5 @@ export function AboutSection() {
         />
       </Reveal>
     </Section>
-  );
+  )
 }

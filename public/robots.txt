@@ -1,0 +1,6 @@
+# robots.txt for saugatgiri.com.np
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://saugatgiri.com.np/sitemap.xml

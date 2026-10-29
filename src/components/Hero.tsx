@@ -1,8 +1,8 @@
-import { motion } from "framer-motion";
-import { Reveal } from "./Reveal";
-import { verse, statement } from "../content";
+import { motion } from "framer-motion"
+import { Reveal } from "./Reveal"
+import { verse, statement } from "../content"
 
-const meta = "font-mono text-[11px] uppercase tracking-[0.18em] text-ink-2";
+const meta = "font-mono text-[11px] uppercase tracking-[0.18em] text-ink-2"
 
 export function Hero() {
   return (
@@ -10,7 +10,7 @@ export function Hero() {
       <section className="grid gap-8 border-b border-line pt-10 sm:pt-12 md:grid-cols-[1.15fr_1fr] md:gap-10 md:pt-16 lg:gap-12 lg:pt-20">
         <div className="order-2 pb-16 md:order-1 md:pb-20 lg:pb-24">
           <Reveal>
-            <p className={meta}>Saugat Giri — Software Engineer</p>
+            <h1 className={meta}>Saugat Giri — Software Engineer</h1>
           </Reveal>
 
           <Reveal delay={100}>
@@ -31,9 +31,9 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={200}>
-            <h1 className="mt-8 max-w-[30ch] text-[28px] font-normal leading-[1.15] tracking-[-0.015em] text-ink sm:text-[34px] md:mt-10 md:text-[32px] lg:text-[42px]">
+            <p className="mt-8 max-w-[30ch] text-[28px] font-normal leading-[1.15] tracking-[-0.015em] text-ink sm:text-[34px] md:mt-10 md:text-[32px] lg:text-[42px]">
               {verse.translation}
-            </h1>
+            </p>
           </Reveal>
 
           <Reveal delay={300}>
@@ -67,5 +67,5 @@ export function Hero() {
         </Reveal>
       </section>
     </div>
-  );
+  )
 }

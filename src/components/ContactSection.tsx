@@ -1,8 +1,8 @@
-import { motion } from "framer-motion";
-import { Arrow } from "./Arrow";
-import { Reveal } from "./Reveal";
-import { Section } from "./Section";
-import { contact } from "../content";
+import { motion } from "framer-motion"
+import { Arrow } from "./Arrow"
+import { Reveal } from "./Reveal"
+import { Section } from "./Section"
+import { contact } from "../content"
 
 export function ContactSection() {
   return (
@@ -48,5 +48,5 @@ export function ContactSection() {
         </ul>
       </Reveal>
     </Section>
-  );
+  )
 }

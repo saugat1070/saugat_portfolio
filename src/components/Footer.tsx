@@ -1,8 +1,8 @@
-import { motion } from "framer-motion";
-import { contact } from "../content";
+import { motion } from "framer-motion"
+import { contact } from "../content"
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear()
 
   return (
     <footer className="mt-16 w-full border-t border-line pt-12 md:mt-24 md:pt-20">
@@ -87,5 +87,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }
