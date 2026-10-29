@@ -16,6 +16,29 @@ export const about = [
   'Outside of work I read philosophy, walk long distances, and return often to the Gītā — less as scripture than as a practical guide to doing one’s work well.',
 ]
 
+export const techStack = {
+  rawUrl:
+    'https://skillicons.dev/icons?i=nodejs,golang,express,mongodb,nestjs,mysql,postgres,graphql,redis,kafka,rabbitmq,docker,typescript,react,nextjs,git,linux,bash,docker,ubuntu,postman,aws,prisma,nginx,grafana,prometheus,kubernetes,terraform,githubactions,elasticsearch,socket,bruno',
+  categories: [
+    {
+      title: 'Languages & Backend',
+      items: ['Go', 'TypeScript', 'Node.js', 'Express', 'NestJS', 'GraphQL', 'Socket.io', 'Bash'],
+    },
+    {
+      title: 'Databases & Streaming',
+      items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Kafka', 'RabbitMQ', 'Elasticsearch', 'Prisma'],
+    },
+    {
+      title: 'Cloud & Infrastructure',
+      items: ['Docker', 'Kubernetes', 'Terraform', 'AWS', 'Nginx', 'Linux', 'Ubuntu', 'GitHub Actions', 'Prometheus', 'Grafana', 'Git'],
+    },
+    {
+      title: 'Frontend',
+      items: ['React', 'Next.js', 'Postman', 'Bruno'],
+    },
+  ],
+}
+
 export const work = [
   {
     period: '2025 — Present',

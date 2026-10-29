@@ -1,6 +1,7 @@
 import { Reveal } from "./Reveal";
 import { Section } from "./Section";
 import { GitHubActivity } from "./GitHubActivity";
+import { TechStack } from "./TechStack";
 import { about, github } from "../content";
 
 export function AboutSection() {
@@ -21,7 +22,12 @@ export function AboutSection() {
           </Reveal>
         ))}
       </div>
-      <Reveal delay={120} className="mt-10 sm:mt-14">
+
+      <Reveal delay={100} className="mt-10 sm:mt-14">
+        <TechStack />
+      </Reveal>
+
+      <Reveal delay={140} className="mt-8 sm:mt-10">
         <GitHubActivity
           username={github.username}
           mergeLanguages={github.mergeLanguages}
