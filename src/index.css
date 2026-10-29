@@ -200,8 +200,27 @@ body {
   animation-play-state: paused;
 }
 
+/* Horizontal client marquee: endless left to right loop */
+@keyframes marquee-ltr {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+.marquee-track-ltr {
+  display: flex;
+  width: max-content;
+  animation: marquee-ltr var(--marquee-duration, 28s) linear infinite;
+}
+.marquee-container:hover .marquee-track-ltr {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .reel-track {
+  .reel-track,
+  .marquee-track-ltr {
     animation: none !important;
   }
   html {

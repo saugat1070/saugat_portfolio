@@ -16,6 +16,35 @@ export const about = [
   'Outside of work I read philosophy, walk long distances, and return often to the Gītā — less as scripture than as a practical guide to doing one’s work well.',
 ]
 
+export const clients = [
+  {
+    name: "Farm2HomeNepal",
+    src: "https://cdn.saugatgiri.com.np/portfolio/Clients/farm2home_nepal.png",
+    alt: "Farm2HomeNepal",
+    url: "https://farm2homenepal.com/",
+  },
+  {
+    name: "Print Patra",
+    src: "https://cdn.saugatgiri.com.np/portfolio/Clients/logo-01.png",
+    alt: "Print Patra",
+    url: "https://printpatra.com.np/",
+
+  },
+  {
+    name: "Gulf paradigm",
+    src: "https://cdn.saugatgiri.com.np/portfolio/Clients/gulf_paradigm.jpeg",
+    alt: "Gulf paradigm",
+    url: "https://gulfparadigm.com/",
+  },
+  {
+    name: "Faith Word",
+    src: "https://cdn.saugatgiri.com.np/portfolio/Clients/faith_word.png",
+    alt: "Faith Word",
+    url: "https://faithword.tech/",
+
+  }
+]
+
 export const techStack = {
   rawUrl:
     'https://skillicons.dev/icons?i=nodejs,golang,express,mongodb,nestjs,mysql,postgres,graphql,redis,kafka,rabbitmq,docker,typescript,react,nextjs,git,linux,bash,docker,ubuntu,postman,aws,prisma,nginx,grafana,prometheus,kubernetes,terraform,githubactions,elasticsearch,socket,bruno',
@@ -44,8 +73,8 @@ export const work = [
     period: '2025 — Present',
     role: 'Software Engineer',
     org: 'Freelancer',
-    note: 'Building and shipping high-quality software for clients across the globe. Engineering scalable backend systems, robust APIs, and cloud-native services.',
-    skills: ['Go', 'TypeScript', 'Node.js', 'PostgreSQL', 'Docker', 'AWS'],
+    note: 'Building and shipping software solutions for clients, focusing on backend architecture, API development, and scalable servicesBuilding and delivering software solutions for clients worldwide, specializing in backend development, scalable APIs, database architecture, and reliable cloud deployments.',
+    skills: ['Backend Development', 'API Development', 'Database Architecture', 'Cloud Deployments', 'Scalable Services'],
   }
 ]
 

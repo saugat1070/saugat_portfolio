@@ -11,15 +11,20 @@ import {
   TimelineSeparator,
   TimelineTitle,
 } from "./reui/timeline";
-import { work } from "../content";
+import { work, clients } from "../content";
 
 export function WorkSection() {
+  // Duplicate clients array into two identical halves to form a seamless infinite loop
+  const clientHalf = [...clients, ...clients, ...clients];
+  const marqueeClients = [...clientHalf, ...clientHalf];
+
   return (
     <Section id="work" index="02" label="Work">
       <Reveal>
         <Timeline defaultValue={1} className="w-full">
           {work.map((w, index) => {
             const isPresent = w.period.toLowerCase().includes("present");
+            const isFreelancer = w.org.toLowerCase().includes("freelancer");
             const skills =
               "skills" in w && Array.isArray(w.skills)
                 ? (w.skills as string[])
@@ -73,6 +78,52 @@ export function WorkSection() {
                           {skill}
                         </motion.span>
                       ))}
+                    </div>
+                  )}
+
+                  {/* Infinite Moving Client Logos (Left to Right) */}
+                  {isFreelancer && clients && clients.length > 0 && (
+                    <div className="mt-8 pt-6 border-t border-line/60">
+                      <div className="flex items-center justify-between mb-4">
+                        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-2">
+                          Working with Our valuable clients
+                        </p>
+                        <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-muted">
+                          Pause on hover
+                        </span>
+                      </div>
+
+                      {/* Infinite Left-to-Right Logo Marquee with edge fade gradient */}
+                      <div
+                        className="marquee-container relative w-full overflow-hidden py-1 select-none"
+                        style={{
+                          maskImage:
+                            "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+                          WebkitMaskImage:
+                            "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+                        }}
+                      >
+                        <div className="marquee-track-ltr items-center gap-12 sm:gap-16">
+                          {marqueeClients.map((client, cIdx) => (
+                            <a
+                              key={`${client.name}-${cIdx}`}
+                              href={client.url}
+                              target="_blank"
+                              rel="noreferrer"
+                              title={client.name}
+                              aria-label={client.name}
+                              className="group/client flex items-center justify-center shrink-0 py-2 transition-transform duration-300 hover:scale-110"
+                            >
+                              <img
+                                src={client.src}
+                                alt={client.alt}
+                                className="h-8 sm:h-9 md:h-9.5 w-auto max-w-[140px] object-contain transition-all duration-300 opacity-90 group-hover/client:opacity-100 dark:opacity-95 dark:brightness-115"
+                                loading="lazy"
+                              />
+                            </a>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   )}
                 </TimelineContent>
