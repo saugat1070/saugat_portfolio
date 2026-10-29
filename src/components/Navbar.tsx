@@ -115,6 +115,24 @@ function MobileThemeTab() {
   )
 }
 
+function TerminalIcon({ className = "size-[16px]" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <polyline points="3.5 11.5 7.5 8 3.5 4.5" />
+      <line x1="9.5" y1="12" x2="13.5" y2="12" />
+    </svg>
+  );
+}
+
 export function Navbar() {
   const active = useActiveSection()
 
@@ -123,12 +141,17 @@ export function Navbar() {
       {/* Sticky pill navbar from md up; phones use the bottom tab bar instead */}
       <header className="sticky top-4 z-50 hidden px-8 md:block">
         <nav
-          className="mx-auto flex h-[50px] max-w-[1136px] items-center justify-between rounded-full border border-line bg-surface/90 pl-5 pr-2 backdrop-blur-md transition-colors duration-300"
+          className="mx-auto flex h-[50px] max-w-[1136px] items-center justify-between rounded-full border border-line bg-surface/90 pl-2.5 pr-2 backdrop-blur-md transition-colors duration-300"
           style={{ boxShadow: 'var(--nav-shadow)' }}
           aria-label="Primary"
         >
-          <a href="#top" className="text-[14px] font-medium tracking-tight text-ink">
-            Saugat Giri
+          <a
+            href="#top"
+            aria-label="Home"
+            title="Saugat Giri — Home"
+            className="grid size-8 place-items-center rounded-full text-ink transition-all duration-300 hover:bg-bg hover:scale-105 focus-visible:outline focus-visible:outline-1 focus-visible:outline-ink"
+          >
+            <TerminalIcon className="size-[16px]" />
           </a>
           <div className="flex items-center gap-1">
             <ul className="hidden items-center md:flex">
