@@ -10,7 +10,7 @@ const stroke = {
   strokeLinejoin: "round",
 } as const
 
-const items: { label: string id: string icon: ReactNode }[] = [
+const items: { label: string; id: string; icon: ReactNode }[] = [
   {
     label: "About",
     id: "about",
@@ -37,6 +37,15 @@ const items: { label: string id: string icon: ReactNode }[] = [
     icon: (
       <g {...stroke}>
         <path d="M7 6 3 10l4 4M13 6l4 4-4 4M11.25 4.5l-2.5 11" />
+      </g>
+    ),
+  },
+  {
+    label: "Achievements",
+    id: "achievements",
+    icon: (
+      <g {...stroke}>
+        <path d="M6 3h8v5a4 4 0 0 1-8 0V3ZM10 12v5M6.5 17h7M6 5H3v2a3 3 0 0 0 3 3M14 5h3v2a3 3 0 0 1-3 3" />
       </g>
     ),
   },
@@ -118,7 +127,7 @@ const tabClass = (on: boolean) =>
     on ? "text-ink" : "text-ink-2 hover:text-ink"
   }`
 
-function TabIcon({ on, children }: { on: boolean children: ReactNode }) {
+function TabIcon({ on, children }: { on: boolean; children: ReactNode }) {
   return (
     <span
       className={`grid h-7 w-11 place-items-center rounded-full transition-colors duration-300 ${

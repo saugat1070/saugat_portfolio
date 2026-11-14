@@ -1,10 +1,10 @@
 // Edit this file to update the copy across the site.
 
 export const verse = {
-  devanagari: ["योगः कर्मसु कौशलम् ॥"],
-  reference: "Bhagavad Gītā · 2.50",
+  devanagari: ["तद्विद्धि प्रणिपातेन परिप्रश्नेन सेवया।"],
+  reference: "Bhagavad Gītā · 4.34",
   translation:
-    "Yoga is excellence in action,\u00A0\u00A0To work with purpose, pursue mastery with patience, and find meaning in every step of the journey.",
+    "Seek knowledge with humility, question with curiosity, and grow through meaningful service.",
 }
 
 export const statement =
@@ -211,13 +211,42 @@ export const cv = {
 }
 
 export const contact = {
-  email: "hello@saugatgiri.com",
+  email: "hello@saugatgiri.com.np",
   links: [
     { label: "GitHub", href: "https://github.com/saugat1070" },
-    { label: "LinkedIn", href: "https://www.linkedin.com/" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/saugat-giri-1070s/" },
     { label: "Résumé", href: cv.href },
   ],
 }
+
+interface Achievement{
+  title : string,
+  description: string,
+  position : string,
+  photos ?: string[],
+  github_url ?: string,
+  posts ?: string[]
+}
+
+export const achievements: Achievement[] = [{
+  title:"Winner Hackathon-Nova 2026",
+  description:"Secured 1st place at Hackathon Nova 2026, competing against 15+ teams with Paila, a location-based fitness platform that turns physical activity into an interactive territory-capturing game. Built as part of Team USA, alongside Upendra and Anurag, the project combined technology, gamification, and real-world fitness to encourage healthier lifestyles.",
+  position:"1st",
+  photos:[
+    "https://cdn.saugatgiri.com.np/portfolio/achievement/hackathon-nova/team_usa.jpeg",
+    "https://cdn.saugatgiri.com.np/portfolio/achievement/hackathon-nova/team_usa_2.jpeg",
+    "https://cdn.saugatgiri.com.np/portfolio/achievement/hackathon-nova/team_usa_3.jpeg",
+    "https://cdn.saugatgiri.com.np/portfolio/achievement/hackathon-nova/Screenshot%20From%202026-11-14%2018-51-29.png"
+  ],
+  github_url: " https://github.com/saugat1070/Team-USA"
+},{
+  title:" Runner-up Code with Coffe",
+  description:"I secured the runner-up position in the Code with Coffee programming competition, where over 100 talented participants showcased their skills. This event was a fantastic platform to demonstrate problem-solving abilities and expertise in data structures and algorithms (DSA).",
+  position: "2nd",
+  photos:[
+    "https://cdn.saugatgiri.com.np/portfolio/achievement/code_with_coffe/cfc.jpeg"
+  ]
+}] 
 
 // GitHub activity shown in the About section (fetched live from public APIs).
 export const github = {

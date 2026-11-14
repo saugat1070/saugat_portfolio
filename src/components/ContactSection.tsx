@@ -6,7 +6,7 @@ import { contact } from "../content"
 
 export function ContactSection() {
   return (
-    <Section id="contact" index="05" label="Contact">
+    <Section id="contact" index="06" label="Contact">
       <Reveal>
         <p className="max-w-[28ch] text-[26px] leading-[1.2] tracking-[-0.015em] text-ink sm:text-[30px] md:text-[36px]">
           If something here resonates, I'd be glad to hear from you.

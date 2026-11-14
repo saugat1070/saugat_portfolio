@@ -168,6 +168,14 @@ body {
   color: var(--bg);
 }
 
+.achievement-gallery {
+  scrollbar-width: none;
+}
+
+.achievement-gallery::-webkit-scrollbar {
+  display: none;
+}
+
 /* Restrained scroll reveal */
 .reveal {
   opacity: 0;
@@ -214,8 +222,10 @@ body {
   width: max-content;
   animation: marquee-ltr var(--marquee-duration, 28s) linear infinite;
 }
-.marquee-container:hover .marquee-track-ltr {
-  animation-play-state: paused;
+@media (hover: hover) and (pointer: fine) {
+  .marquee-container:hover .marquee-track-ltr {
+    animation-play-state: paused;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

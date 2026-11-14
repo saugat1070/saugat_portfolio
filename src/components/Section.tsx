@@ -30,7 +30,7 @@ export function Section({
             {label}
           </h2>
         </Reveal>
-        <div>{children}</div>
+        <div className="min-w-0">{children}</div>
       </div>
     </motion.section>
   )

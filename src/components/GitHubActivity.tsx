@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 
-type Day = { date: string count: number level: 0 | 1 | 2 | 3 | 4 }
+type Day = { date: string; count: number; level: 0 | 1 | 2 | 3 | 4 }
 type Repo = {
   stargazers_count: number
   language: string | null
@@ -197,7 +197,7 @@ export function GitHubActivity({
       .filter((c) => c.col >= start)
       .map((c) => ({ ...c, col: c.col - start }))
 
-    const months: { label: string col: number }[] = []
+    const months: { label: string; col: number }[] = []
     let last = -1
     for (const c of cells) {
       const m = new Date(`${c.date}T00:00:00Z`).getUTCMonth()
@@ -415,7 +415,7 @@ function langFill(name: string, i: number) {
 function LanguageDonut({
   languages,
 }: {
-  languages: { name: string share: number }[]
+  languages: { name: string; share: number }[]
 }) {
   const r = 42
   const c = 2 * Math.PI * r

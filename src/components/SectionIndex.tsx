@@ -5,7 +5,9 @@ const sections = [
   ["01", "About", "#about"],
   ["02", "Work", "#work"],
   ["03", "Projects", "#projects"],
-  ["04", "Contact", "#contact"],
+  ["04", "Teaching", "#teaching"],
+  ["05", "Achievements", "#achievements"],
+  ["06", "Contact", "#contact"],
 ]
 
 export function SectionIndex() {
@@ -22,7 +24,7 @@ export function SectionIndex() {
             transition: { staggerChildren: 0.06 },
           },
         }}
-        className="grid grid-cols-2 gap-px border border-line bg-line sm:grid-cols-4"
+        className="grid grid-cols-2 gap-px border border-line bg-line sm:grid-cols-3 lg:grid-cols-6"
       >
         {sections.map(([n, label, href]) => (
           <motion.li

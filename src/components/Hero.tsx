@@ -31,7 +31,7 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={200}>
-            <p className="mt-8 max-w-[30ch] text-[28px] font-normal leading-[1.15] tracking-[-0.015em] text-ink sm:text-[34px] md:mt-10 md:text-[32px] lg:text-[42px]">
+            <p className="mt-8 max-w-[30ch] text-[24px] font-normal leading-[1.15] tracking-[-0.015em] text-ink sm:text-[24px] md:mt-10 md:text-[36] lg:text-[48px]">
               {verse.translation}
             </p>
           </Reveal>

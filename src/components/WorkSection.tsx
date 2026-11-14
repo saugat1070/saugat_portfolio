@@ -20,8 +20,8 @@ export function WorkSection() {
 
   return (
     <Section id="work" index="02" label="Work">
-      <Reveal>
-        <Timeline defaultValue={1} className="w-full">
+      <Reveal className="min-w-0">
+        <Timeline defaultValue={1} className="w-full min-w-0">
           {work.map((w, index) => {
             const isPresent = w.period.toLowerCase().includes("present")
             const isFreelancer = w.org.toLowerCase().includes("freelancer")
@@ -31,14 +31,23 @@ export function WorkSection() {
                 : []
 
             return (
-              <TimelineItem key={`${w.period}-${index}`} step={index + 1}>
-                <TimelineHeader>
+              <TimelineItem
+                key={`${w.period}-${index}`}
+                step={index + 1}
+                className="min-w-0"
+              >
+                <TimelineHeader className="min-w-0">
                   <TimelineDate className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-2">
                     {w.period}
                   </TimelineDate>
-                  <TimelineTitle className="text-[17px] font-medium text-ink sm:text-[19px] flex flex-wrap items-center gap-x-2 gap-y-1">
-                    <span>{w.role}</span>
-                    <span className="font-normal text-ink-2">· {w.org}</span>
+                  <TimelineTitle className="text-[17px] leading-snug font-medium text-ink sm:text-[19px] flex flex-wrap items-center gap-x-2 gap-y-1.5">
+                    <span className="w-full break-words sm:w-auto">
+                      {w.role}
+                    </span>
+                    <span className="font-normal text-ink-2">
+                      <span className="hidden sm:inline">· </span>
+                      {w.org}
+                    </span>
                     {isPresent && (
                       <motion.span
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -59,7 +68,7 @@ export function WorkSection() {
                   )}
                 </TimelineIndicator>
                 <TimelineSeparator />
-                <TimelineContent className="mt-2 text-[15px] sm:text-[16px] leading-[1.7] text-ink-2 max-w-[56ch]">
+                <TimelineContent className="mt-3 min-w-0 w-full break-words text-[15px] sm:text-[16px] leading-[1.7] text-ink-2 max-w-[56ch]">
                   <p>{w.note}</p>
                   {skills.length > 0 && (
                     <div className="mt-3 flex flex-wrap gap-1.5">
@@ -73,7 +82,7 @@ export function WorkSection() {
                             stiffness: 400,
                             damping: 25,
                           }}
-                          className="inline-flex cursor-default items-center rounded border border-line bg-surface/80 px-2 py-0.5 font-mono text-[11px] text-ink transition-colors hover:border-ink hover:text-ink select-none"
+                          className="inline-flex max-w-full cursor-default items-center rounded border border-line bg-surface/80 px-2 py-1 sm:py-0.5 font-mono text-[11px] text-ink transition-colors hover:border-ink hover:text-ink select-none"
                         >
                           {skill}
                         </motion.span>
@@ -83,19 +92,19 @@ export function WorkSection() {
 
                   {/* Infinite Moving Client Logos (Left to Right) */}
                   {isFreelancer && clients && clients.length > 0 && (
-                    <div className="mt-8 pt-6 border-t border-line/60">
-                      <div className="flex items-center justify-between mb-4">
-                        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-2">
+                    <div className="mt-6 pt-4 border-t border-line/60 sm:mt-8 sm:pt-6">
+                      <div className="mb-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 sm:mb-4">
+                        <p className="font-mono text-[10px] leading-relaxed uppercase tracking-[0.12em] sm:tracking-[0.18em] text-ink-2">
                           Working with Our valuable clients
                         </p>
-                        <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-muted">
+                        <span className="hidden shrink-0 font-mono text-[9px] uppercase tracking-[0.16em] text-ink-2 sm:inline">
                           Pause on hover
                         </span>
                       </div>
 
                       {/* Infinite Left-to-Right Logo Marquee with edge fade gradient */}
                       <div
-                        className="marquee-container relative w-full overflow-hidden py-1 select-none"
+                        className="marquee-container relative w-full min-w-0 overflow-hidden py-1 select-none"
                         style={{
                           maskImage:
                             "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
@@ -103,7 +112,7 @@ export function WorkSection() {
                             "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
                         }}
                       >
-                        <div className="marquee-track-ltr items-center gap-12 sm:gap-16">
+                        <div className="marquee-track-ltr items-center gap-8 pr-8 sm:gap-16 sm:pr-16">
                           {marqueeClients.map((client, cIdx) => (
                             <a
                               key={`${client.name}-${cIdx}`}

@@ -6,6 +6,7 @@ import { AboutSection } from "./components/AboutSection"
 import { WorkSection } from "./components/WorkSection"
 import { ProjectsSection } from "./components/ProjectsSection"
 import { TeachingSection } from "./components/TeachingSection"
+import { AchievementsSection } from "./components/AchievementsSection"
 import { ContactSection } from "./components/ContactSection"
 import { Footer } from "./components/Footer"
 
@@ -37,6 +38,7 @@ export default function App() {
         <WorkSection />
         <ProjectsSection />
         <TeachingSection />
+        <AchievementsSection />
         <ContactSection />
       </main>
 

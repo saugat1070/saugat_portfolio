@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 
-export type ReelImage = { src: string alt: string }
+export type ReelImage = { src: string; alt: string }
 
 type Props = {
   images: ReelImage[]
