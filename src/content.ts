@@ -207,7 +207,7 @@ export const teaching = {
 
 // Put the PDF in public/ with this filename; the navbar icon and Contact link open it in a new tab.
 export const cv = {
-  href: "/Saugat-Giri-CV.pdf",
+  href: "https://cdn.saugatgiri.com.np/portfolio/saugat_resume.pdf",
 }
 
 export const contact = {
