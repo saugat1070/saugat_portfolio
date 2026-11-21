@@ -12,7 +12,7 @@ const sections = [
 
 export function SectionIndex() {
   return (
-    <nav aria-label="Sections">
+    <nav aria-label="Sections" className="hidden md:block">
       <motion.ul
         initial="hidden"
         whileInView="visible"
