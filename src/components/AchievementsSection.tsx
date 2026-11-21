@@ -139,7 +139,7 @@ export function AchievementsSection() {
     <section
       id="achievements"
       aria-labelledby="achievements-heading"
-      className="py-6 md:py-8"
+      className="border-t border-line py-16 md:py-20 lg:py-24"
     >
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
         <h2
